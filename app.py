@@ -1,4 +1,5 @@
 from flask import Flask
+import os
 app = Flask(__name__)
 
 
@@ -38,7 +39,16 @@ def hello():
 
 @app.route('/ml', methods=['POST'])
 def ml():
-    return "ml button clicked"
+
+    try: 
+        textinput = request.form.get('textinput')
+        from ml import dummyep
+        retstr = dummyep.ml_endpoint(textinput)
+        print(retstr)
+        return str(retstr)
+    except Exception as e:
+        return str(e)
+    # return "ml button clicked"
 
 if __name__ == '__main__':
    app.run()

@@ -29,6 +29,11 @@
         <p> New form </p>
         <form method="post" action="{{url_for('ml')}}">
           <div>
+            <select name="deployment" id="deployment">
+              <option selected value="none"> (none)</option>
+              <option value="green">green</option>
+              <option value="blue">blue</option>
+            </select>
             <input type="text" class="form-control" id="textinput" name="textinput" style="max-width: 256px;">
           </div>
           <div >

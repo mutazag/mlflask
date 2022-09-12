@@ -42,10 +42,11 @@ def ml():
 
     try: 
         textinput = request.form.get('textinput')
+        deployment = request.form.get('deployment')
         from ml import dummyep
-        retstr = dummyep.ml_endpoint(textinput)
+        retstr = dummyep.ml_endpoint(textinput, deployment)
         print(retstr)
-        return str(retstr)
+        return render_template('dummyep.html', result = retstr, deployment=deployment)
     except Exception as e:
         return str(e)
     # return "ml button clicked"

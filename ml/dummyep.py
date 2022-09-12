@@ -3,7 +3,7 @@ import json
 import os
 import ssl
 
-def ml_endpoint(textinput): 
+def ml_endpoint(textinput, deployment): 
     # Request data goes here
     # The example below assumes JSON formatting which may be updated
     # depending on the format your endpoint expects.
@@ -19,7 +19,11 @@ def ml_endpoint(textinput):
 
     # The azureml-model-deployment header will force the request to go to a specific deployment.
     # Remove this header to have the request observe the endpoint traffic rules
-    headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key), 'azureml-model-deployment': 'green' }
+    headers = {
+        'Content-Type':'application/json', 
+        'Authorization':('Bearer '+ api_key)}
+    if deployment != 'none':
+        headers['azureml-model-deployment'] = deployment
 
     req = urllib.request.Request(url, body, headers)
 

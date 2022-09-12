@@ -40,7 +40,7 @@ def hello():
 @app.route('/ml', methods=['POST'])
 def ml():
 
-    try: 
+    try:
         textinput = request.form.get('textinput')
         deployment = request.form.get('deployment')
         from ml import dummyep
@@ -50,6 +50,12 @@ def ml():
     except Exception as e:
         return str(e)
     # return "ml button clicked"
+
+
+@app.route('/data', methods=['POST','GET'])
+def requestCustomerDataFromTestForm():
+    data={'id':1, 'name':'Josh'}
+    return render_template("data.html", data = os.environ)
 
 if __name__ == '__main__':
    app.run()

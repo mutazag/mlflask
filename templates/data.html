@@ -1,0 +1,32 @@
+<!-- {% if data %}
+
+<p>{{data}}</p>
+{% endif %}
+
+<p>
+    {% if data %}
+    <li>{{data['id']}}</li>
+    <li>{{data['name']}}</li>
+    {% endif%}
+
+</p>
+
+<p>
+    {%for item in data %}
+    <li>{{item}}, {{data[item]}}</li>
+    {% endfor %}
+</p> -->
+
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+    </tr>
+    {% for item in data %}
+    <tr>
+        <td>{{item}}</td>
+        <td>{{data[item]}}</td>
+    </tr>
+    {% endfor %}
+</table>

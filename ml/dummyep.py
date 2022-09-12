@@ -3,7 +3,7 @@ import json
 import os
 import ssl
 
-def ml_endpoint(textinput, deployment): 
+def ml_endpoint(textinput, deployment):
     # Request data goes here
     # The example below assumes JSON formatting which may be updated
     # depending on the format your endpoint expects.
@@ -14,13 +14,15 @@ def ml_endpoint(textinput, deployment):
     # body = str.encode(json.dumps(data))
     body = str.encode(textinput)
 
-    url = 'https://dummyendpoint.australiaeast.inference.ml.azure.com/score'
-    api_key = 'FGp5AyJkocaa1OMyGRAaVQAT0s08A09d' # Replace this with the API key for the web service
+    # dummyepurl
+    url = os.environ['dummyepurl']
+    # dummyepkey
+    api_key = os.environ['dummyepkey']
 
     # The azureml-model-deployment header will force the request to go to a specific deployment.
     # Remove this header to have the request observe the endpoint traffic rules
     headers = {
-        'Content-Type':'application/json', 
+        'Content-Type':'application/json',
         'Authorization':('Bearer '+ api_key)}
     if deployment != 'none':
         headers['azureml-model-deployment'] = deployment

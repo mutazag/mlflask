@@ -1,5 +1,4 @@
 from flask import Flask
-from azureml.core import Workspace
 import os
 app = Flask(__name__)
 

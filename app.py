@@ -1,4 +1,5 @@
 from flask import Flask
+from azureml.core import Workspace
 import os
 app = Flask(__name__)
 
@@ -44,9 +45,9 @@ def ml():
         textinput = request.form.get('textinput')
         deployment = request.form.get('deployment')
         from ml import dummyep
-        retstr = dummyep.ml_endpoint(textinput, deployment)
-        print(retstr)
-        return render_template('dummyep.html', result = retstr, deployment=deployment)
+        ret = dummyep.ml_endpoint(textinput, deployment)
+        print(ret)
+        return render_template('dummyep.html', result=ret, deployment=deployment)
     except Exception as e:
         return str(e)
     # return "ml button clicked"
@@ -56,6 +57,12 @@ def ml():
 def requestCustomerDataFromTestForm():
     data={'id':1, 'name':'Josh'}
     return render_template("data.html", data = os.environ)
+
+
+@app.route('/aml', methods=['POST','GET'])
+def aml():
+
+    return 'true'
 
 if __name__ == '__main__':
    app.run()

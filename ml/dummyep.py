@@ -33,8 +33,9 @@ def ml_endpoint(textinput, deployment):
         response = urllib.request.urlopen(req)
 
         result = response.read()
-        print(str(result))
-        return(result)
+        depslot = response.headers['azureml-model-deployment']
+
+        return({'response': result, 'deployment': depslot})
     except urllib.error.HTTPError as error:
         print("The request failed with status code: " + str(error.code))
 

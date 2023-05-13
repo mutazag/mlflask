@@ -51,6 +51,23 @@ def ml():
         return str(e)
     # return "ml button clicked"
 
+@app.route('/gpt2', methods=['GET'])
+def gpt2form():
+    return render_template('gpt2.html', result='Hi There!', deployment='none')
+
+@app.route('/gpt2', methods=['POST'])
+def gpt2():
+    
+        try:
+            textinput = request.form.get('gpt2textinput')
+            deployment = request.form.get('gpt2deployment')
+            from ml import gpt2
+            ret = gpt2.gpt2(textinput, deployment)
+            print(ret)
+            return render_template('gpt2.html', result=ret, deployment=deployment)
+        except Exception as e:
+            return str(e)
+        # return "ml button clicked"
 
 @app.route('/data', methods=['POST','GET'])
 def requestCustomerDataFromTestForm():

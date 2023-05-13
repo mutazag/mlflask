@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'mlflask'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C1E7FDF54C894C549500394B14CED69B }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}

@@ -63,7 +63,8 @@ def gpt2():
             deployment = request.form.get('gpt2deployment')
             from ml import gpt2
             ret = gpt2.gpt2(textinput, deployment)
-            print(ret)
+            print(ret) 
+            
             return render_template('gpt2.html', result=ret, deployment=deployment)
         except Exception as e:
             return str(e)

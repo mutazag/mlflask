@@ -5,8 +5,8 @@ import json
 def getDeployments(endpointName='maggpt2'):
 
     tenantid = os.environ['tenantid']
-    client_id = os.environ['client_id']
-    client_secret = os.environ['client_secret']
+    client_id = os.environ['clientid']
+    client_secret = os.environ['clientsecret']
 
     url = f"https://login.microsoftonline.com/{tenantid}/oauth2/token"
 

@@ -18,8 +18,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+   from ml import endpoints
    print('Request for index page received')
-   return render_template('index.html')
+   return render_template('index.html', deployments=endpoints.getDeployments('dummyendpoint') )
 
 @app.route('/favicon.ico')
 def favicon():
@@ -53,7 +54,13 @@ def ml():
 
 @app.route('/gpt2', methods=['GET'])
 def gpt2form():
-    return render_template('gpt2.html', result='Hi There!', deployment='none')
+    from ml import endpoints
+    return render_template(
+        'gpt2.html', 
+        result='Hi There!', 
+        deployment='none', 
+        deployments=endpoints.getDeployments('maggpt2')   
+        )
 
 @app.route('/gpt2', methods=['POST'])
 def gpt2():
@@ -61,11 +68,11 @@ def gpt2():
         try:
             textinput = request.form.get('gpt2textinput')
             deployment = request.form.get('gpt2deployment')
-            from ml import gpt2
+            from ml import gpt2, endpoints
             ret = gpt2.gpt2(textinput, deployment)
             print(ret) 
-            
-            return render_template('gpt2.html', result=ret, deployment=deployment)
+
+            return render_template('gpt2.html', result=ret, deployment=deployment, deployments=endpoints.getDeployments())
         except Exception as e:
             return str(e)
         # return "ml button clicked"

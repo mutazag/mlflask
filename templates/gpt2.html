@@ -16,13 +16,16 @@
                 <label for="gpt2deployment" class="form-label fw-bold fs-5">Endpoint deployment slot:</label>
                 <select name="gpt2deployment" id="gpt2deployment">
                   <option selected value="none"> (none)</option>
-                  <option value="gpt2-3">green</option>
+                  <!-- <option value="gpt2-3">green</option> -->
+                  {% for d in deployments %}
+                    <option value="{{ d }}">{{ d }}</option>
+                  {% endfor %}
                 </select>
-    
+                
                 <label for="name" class="form-label fw-bold fs-5">Prompt:</label>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center align-items-center my-1">
                   <!-- multiline text input -->
-                  <textarea class="form-control" id="gpt2textinput" name="gpt2textinput" rows="3" style="max-width: 256px;"></textarea>
+                  <textarea class="form-control" id="gpt2textinput" name="gpt2textinput" rows="5" style="max-width: 600px;"></textarea>
                   <!-- <input type="text" class="form-control" id="gpt2textinput" name="gpt2textinput" style="max-width: 256px;"> -->
                 </div>
               </div>
@@ -36,7 +39,7 @@
 
             <!-- readonly multi-line text input -->
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center align-items-center my-1">
-              <textarea class="form-control" id="gpt2textoutput" name="gpt2textoutput" rows="3" style="max-width: 256px;" readonly>{{result.response}}</textarea>
+              <textarea class="form-control" id="gpt2textoutput" name="gpt2textoutput" rows="5" style="max-width: 600px;" readonly>{{result.response}}</textarea>
             </div>
 
 

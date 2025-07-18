@@ -20,7 +20,12 @@ app = Flask(__name__)
 def index():
    from ml import endpoints
    print('Request for index page received')
-   return render_template('index.html', deployments=endpoints.getDeployments('dummyendpoint') )
+   return render_template(
+       'index.html', 
+       deployments=endpoints.getDeployments(
+           os.environ.get('defaultendpoint', 'dummyep2')
+           ) 
+        )
 
 @app.route('/favicon.ico')
 def favicon():

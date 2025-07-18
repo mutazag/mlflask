@@ -11,7 +11,7 @@ def getDeployments(endpointName='maggpt2'):
     url = f"https://login.microsoftonline.com/{tenantid}/oauth2/token"
 
     payload = f'grant_type=client_credentials&client_id={client_id}&client_secret={client_secret}&resource=https%3A%2F%2Fmanagement.azure.com'
-
+    print(payload.encode('utf-8'))
     req = urllib.request.Request(url, payload.encode('utf-8'))
     response = urllib.request.urlopen(req)
     result = response.read()
